@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx
+  labels:
+    app: nginx-replacement
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-replacement
+  template:
+    metadata:
+      labels:
+        app: nginx-replacement
+    spec:
+      containers:
+      - name: custom-nginx
+        image: alexandercnigro/nginx-replacement:latest
+        ports:
+        - containerPort: 80
